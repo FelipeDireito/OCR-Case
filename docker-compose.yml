@@ -1,0 +1,88 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: ocr-postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ocr_case
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - ocr-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ocr-backend
+    restart: always
+    ports:
+      - "5005:5005"
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/ocr_case?schema=public
+      - JWT_SECRET=senha
+      - PORT=5005
+      - OLLAMA_API_URL=http://ollama:11434
+      # - OLLAMA_MODEL=tinyllama
+      - OLLAMA_MODEL=llama3
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    networks:
+      - ocr-network
+
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    restart: always
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    networks:
+      - ocr-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: ocr-frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_SECRET=senha
+      - NEXT_PUBLIC_API_URL=http://localhost:5005
+      - BACKEND_API_URL=http://backend:5005
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    networks:
+      - ocr-network
+
+networks:
+  ocr-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  ollama_data:

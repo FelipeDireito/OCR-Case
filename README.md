@@ -33,11 +33,11 @@ The application provides secure user authentication with JWT tokens and NextAuth
   <div style="display: flex; justify-content: space-between;">
     <div style="flex: 1; padding-right: 10px;">
       <h4>Login</h4>
-      <img src="docs/images/login.png" alt="Login Screen" width="400"/>
+      <img src="docs/images/login.png" alt="Login Screen" width="300"/>
     </div>
     <div style="flex: 1; padding-left: 10px;">
       <h4>Register</h4>
-      <img src="docs/images/register.png" alt="Register Screen" width="400"/>
+      <img src="docs/images/register.png" alt="Register Screen" width="300"/>
     </div>
   </div>
 </div>

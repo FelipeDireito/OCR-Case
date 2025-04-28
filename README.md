@@ -30,16 +30,18 @@ The application provides a user-friendly interface for managing documents and in
 The application provides secure user authentication with JWT tokens and NextAuth.js integration. Users can register for a new account or log in with existing credentials. All document operations are protected and associated with specific user accounts.
 
 <div align="center">
-  <div style="display: flex; justify-content: space-between;">
-    <div style="flex: 1; padding-right: 10px;">
+<table>
+  <tr>
+    <td align="center" width="50%">
       <h4>Login</h4>
       <img src="docs/images/login.png" alt="Login Screen" width="300"/>
-    </div>
-    <div style="flex: 1; padding-left: 10px;">
+    </td>
+    <td align="center" width="50%">
       <h4>Register</h4>
       <img src="docs/images/register.png" alt="Register Screen" width="300"/>
-    </div>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
 
 ### Document Management

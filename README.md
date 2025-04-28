@@ -21,6 +21,54 @@ A web application that allows users to upload documents, extract text using OCR,
 - User authentication and authorization
 - Responsive design
 
+## Application Screenshots
+
+The application provides a user-friendly interface for managing documents and interacting with the LLM. Below are some key screenshots.
+
+### Authentication
+
+The application provides secure user authentication with JWT tokens and NextAuth.js integration. Users can register for a new account or log in with existing credentials. All document operations are protected and associated with specific user accounts.
+
+<div align="center">
+  <div style="display: flex; justify-content: space-between;">
+    <div style="flex: 1; padding-right: 10px;">
+      <h4>Login</h4>
+      <img src="docs/images/login.png" alt="Login Screen" width="400"/>
+    </div>
+    <div style="flex: 1; padding-left: 10px;">
+      <h4>Register</h4>
+      <img src="docs/images/register.png" alt="Register Screen" width="400"/>
+    </div>
+  </div>
+</div>
+
+### Document Management
+
+The document dashboard provides a centralized interface for managing all your uploaded documents. From here, you can:
+
+- **View documents**: Click on any document to see its extracted text and interact with the LLM
+- **Upload new documents**: Add PDF, JPEG, PNG, or TIFF files through the intuitive upload interface
+- **Delete documents**: Remove documents you no longer need with a simple click
+
+#### Document Dashboard
+![Documents Dashboard](docs/images/documents_uploaded.png)
+
+### OCR and LLM Analysis
+
+The core functionality of the application combines OCR capabilities with LLM-based analysis:
+
+- **Text extraction**: Extracts text from the documents
+- **Document chat**: Ask questions about the document content and receive contextual responses
+- **Intelligent analysis**: The LLM understands the document context and can explain some concepts
+- **Conversation history**: All interactions with the LLM are saved for future reference
+
+#### Text Extraction
+![OCR and LLM Analysis](docs/images/ocr.png)
+
+#### Document Chat
+![Document Chat](docs/images/chat.png)
+
+
 ## Running the Application Locally
 
 ### Prerequisites
@@ -115,4 +163,6 @@ ollama:
 
 ## License
 
-[MIT](LICENSE)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+MIT License is a permissive license that allows anyone to use, modify, distribute, and sell this software, provided that the original copyright notice and the license text are included in all copies or substantial portions of the software.
